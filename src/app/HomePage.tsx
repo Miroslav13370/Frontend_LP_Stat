@@ -24,8 +24,8 @@ export default function HomePage() {
       </header>
 
       <section className="relative flex min-h-screen items-center justify-center px-6 py-10">
-        <div className="absolute left-[-120px] top-20 h-96 w-96 rounded-full bg-[#ff4fa3]/30 blur-[130px]" />
-        <div className="absolute bottom-10 right-[-120px] h-96 w-96 rounded-full bg-[#5b4dff]/30 blur-[130px]" />
+        <div className="absolute -left-30` top-20 h-96 w-96 rounded-full bg-[#ff4fa3]/30 blur-[130px]" />
+        <div className="absolute bottom-10 -right-30` h-96 w-96 rounded-full bg-[#5b4dff]/30 blur-[130px]" />
         <div className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-[140px]" />
 
         <div className="relative z-10 mx-auto max-w-5xl pt-24 text-center">
@@ -44,19 +44,19 @@ export default function HomePage() {
           </p>
 
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row sm:flex-wrap">
-            <Link
+            <a
               href={`${serverUrl}/api/auth/tiktok`}
               className="rounded-2xl bg-[#ff4fa3] px-7 py-4 text-base font-bold text-white shadow-lg shadow-[#ff4fa3]/25 transition hover:scale-[1.03] hover:bg-[#ff2f93]"
             >
               Авторизовать TikTok
-            </Link>
+            </a>
 
-            <Link
+            <a
               href={`${serverUrl}/api/auth/youtube`}
               className="rounded-2xl bg-white px-7 py-4 text-base font-bold text-[#14142f] transition hover:scale-[1.03] hover:bg-white/90"
             >
               Авторизовать YouTube
-            </Link>
+            </a>
 
             <Link
               href="/instagram/connect"
@@ -74,21 +74,21 @@ export default function HomePage() {
           </div>
 
           <div className="mt-16 grid gap-4 sm:grid-cols-3">
-            <div className="rounded-3xl border border-white/10 bg-white/[0.06] p-6 backdrop-blur">
+            <div className="rounded-3xl border border-white/10 bg-white/6 p-6 backdrop-blur">
               <p className="text-3xl font-black text-[#ff4fa3]">Connect</p>
               <p className="mt-2 text-sm text-white/55">
                 подключение аккаунтов и ручные отчёты
               </p>
             </div>
 
-            <div className="rounded-3xl border border-white/10 bg-white/[0.06] p-6 backdrop-blur">
+            <div className="rounded-3xl border border-white/10 bg-white/6 p-6 backdrop-blur">
               <p className="text-3xl font-black text-white">Stats</p>
               <p className="mt-2 text-sm text-white/55">
                 просмотры, видео и активность
               </p>
             </div>
 
-            <div className="rounded-3xl border border-white/10 bg-white/[0.06] p-6 backdrop-blur">
+            <div className="rounded-3xl border border-white/10 bg-white/6 p-6 backdrop-blur">
               <p className="text-3xl font-black text-[#8b7cff]">Admin</p>
               <p className="mt-2 text-sm text-white/55">
                 управление командой и аккаунтами

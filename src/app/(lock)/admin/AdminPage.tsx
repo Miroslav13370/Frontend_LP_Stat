@@ -474,30 +474,32 @@ export default function AdminPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 px-6 py-8 text-white">
+    <div className="min-h-screen bg-slate-950 px-4 py-6 text-white sm:px-6 sm:py-8">
       <div className="mx-auto max-w-7xl space-y-8">
-        <section className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl">
+        <section className="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl sm:p-6">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="mb-2 text-sm text-slate-400">Админ-панель</p>
 
-              <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
+              <h1 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
                 Управление аккаунтами соцсетей
               </h1>
 
-              <p className="mt-3 max-w-2xl text-slate-400">
+              <p className="mt-3 max-w-2xl text-sm text-slate-400 sm:text-base">
                 Здесь можно смотреть TikTok, YouTube и Instagram аккаунты,
                 менять модераторов и удалять аккаунты.
               </p>
             </div>
 
             <div className="w-full rounded-2xl border border-white/10 bg-slate-900 p-4 md:max-w-md">
-              <div className="mb-3 flex items-center justify-between">
+              <div className="mb-3 flex items-center justify-between gap-3">
                 <span className="text-sm text-slate-400">
                   Промежуток статистики
                 </span>
 
-                <span className="text-sm font-medium">{periodLabel}</span>
+                <span className="text-right text-sm font-medium">
+                  {periodLabel}
+                </span>
               </div>
 
               <select
@@ -564,7 +566,7 @@ export default function AdminPage() {
           </div>
         )}
 
-        <section className="grid gap-4 md:grid-cols-5">
+        <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
             <p className="text-sm text-slate-400">Всего аккаунтов</p>
             <p className="mt-2 text-3xl font-bold">
@@ -587,7 +589,7 @@ export default function AdminPage() {
             <p className="mt-2 text-3xl font-bold">{instagramAccountsCount}</p>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-5 sm:col-span-2 lg:col-span-1">
             <p className="text-sm text-slate-400">
               Просмотры: {appliedPeriodLabel}
             </p>
@@ -598,7 +600,7 @@ export default function AdminPage() {
           </div>
         </section>
 
-        <section className="rounded-3xl border border-white/10 bg-white/5 p-6">
+        <section className="rounded-3xl border border-white/10 bg-white/5 p-4 sm:p-6">
           <div className="mb-5 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
               <h2 className="text-2xl font-semibold">Аккаунты соцсетей</h2>
@@ -617,170 +619,172 @@ export default function AdminPage() {
             />
           </div>
 
-          <table className="w-full table-fixed border-separate border-spacing-y-3 text-sm">
-            <thead>
-              <tr className="text-left text-xs text-slate-400">
-                <th className="w-[20%] px-3 py-2">Аккаунт</th>
-                <th className="w-[9%] px-3 py-2">Платформа</th>
-                <th className="w-[7%] px-3 py-2">Видео</th>
-                <th className="w-[8%] px-3 py-2">1000+</th>
-                <th className="w-[8%] px-3 py-2">Лайки</th>
-                <th className="w-[9%] px-3 py-2">Просмотры</th>
-                <th className="w-[12%] px-3 py-2">Монтажёр</th>
-                <th className="w-[13%] px-3 py-2">Модератор</th>
-                <th className="w-[6%] px-3 py-2">Статус</th>
-                <th className="w-[8%] px-3 py-2">Действия</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {isSocialAccountsFetching ? (
-                <tr>
-                  <td
-                    colSpan={10}
-                    className="px-4 py-10 text-center text-slate-400"
-                  >
-                    <div className="flex items-center justify-center gap-3">
-                      <Spinner className="h-5 w-5" />
-                      Загружаем аккаунты...
-                    </div>
-                  </td>
+          <div className="mt-5 overflow-x-auto">
+            <table className="w-full min-w-[1100px] border-collapse text-left text-xs xl:text-sm">
+              <thead>
+                <tr className="border-b border-white/10 text-slate-400">
+                  <th className="px-3 py-3 font-medium">Аккаунт</th>
+                  <th className="px-3 py-3 font-medium">Платформа</th>
+                  <th className="px-3 py-3 font-medium">Видео</th>
+                  <th className="px-3 py-3 font-medium">1000+</th>
+                  <th className="px-3 py-3 font-medium">Лайки</th>
+                  <th className="px-3 py-3 font-medium">Просмотры</th>
+                  <th className="px-3 py-3 font-medium">Монтажёр</th>
+                  <th className="px-3 py-3 font-medium">Модератор</th>
+                  <th className="px-3 py-3 font-medium">Статус</th>
+                  <th className="px-3 py-3 font-medium">Действия</th>
                 </tr>
-              ) : filteredAccounts.length === 0 ? (
-                <tr>
-                  <td
-                    colSpan={10}
-                    className="px-4 py-10 text-center text-slate-400"
-                  >
-                    Нет данных.
-                  </td>
-                </tr>
-              ) : (
-                filteredAccounts.map((account) => {
-                  const accountKey = `${account.platform}-${account.id}`;
-                  const publicUrl = getAccountPublicUrl(account);
+              </thead>
 
-                  const selectedModeratorId =
-                    pendingModeratorChanges[accountKey] ??
-                    account.moderatorId ??
-                    "";
-
-                  return (
-                    <tr
-                      key={accountKey}
-                      className="bg-slate-900/80 text-slate-200"
+              <tbody>
+                {isSocialAccountsFetching ? (
+                  <tr>
+                    <td
+                      colSpan={10}
+                      className="px-4 py-10 text-center text-slate-400"
                     >
-                      <td className="rounded-l-2xl px-3 py-4">
-                        <div className="flex min-w-0 items-center gap-3">
-                          <AvatarImage
-                            src={account.avatarUrl}
-                            alt={account.displayName ?? "Social account"}
-                          />
+                      <div className="flex items-center justify-center gap-3">
+                        <Spinner className="h-5 w-5" />
+                        Загружаем аккаунты...
+                      </div>
+                    </td>
+                  </tr>
+                ) : filteredAccounts.length === 0 ? (
+                  <tr>
+                    <td
+                      colSpan={10}
+                      className="px-4 py-10 text-center text-slate-400"
+                    >
+                      Нет данных.
+                    </td>
+                  </tr>
+                ) : (
+                  filteredAccounts.map((account) => {
+                    const accountKey = `${account.platform}-${account.id}`;
+                    const publicUrl = getAccountPublicUrl(account);
 
-                          <div className="min-w-0">
-                            {publicUrl ? (
-                              <a
-                                href={publicUrl}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="block truncate font-medium text-blue-300 hover:underline"
-                              >
-                                {account.displayName ??
-                                  account.username ??
-                                  "Без имени"}
-                              </a>
-                            ) : (
-                              <p className="truncate font-medium">
-                                {account.displayName ?? "Без имени"}
+                    const selectedModeratorId =
+                      pendingModeratorChanges[accountKey] ??
+                      account.moderatorId ??
+                      "";
+
+                    return (
+                      <tr
+                        key={accountKey}
+                        className="border-b border-white/5 text-slate-200"
+                      >
+                        <td className="px-3 py-4">
+                          <div className="flex min-w-0 items-center gap-3">
+                            <AvatarImage
+                              src={account.avatarUrl}
+                              alt={account.displayName ?? "Social account"}
+                            />
+
+                            <div className="min-w-0">
+                              {publicUrl ? (
+                                <a
+                                  href={publicUrl}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="block truncate font-medium text-blue-300 hover:underline"
+                                >
+                                  {account.displayName ??
+                                    account.username ??
+                                    "Без имени"}
+                                </a>
+                              ) : (
+                                <p className="truncate font-medium">
+                                  {account.displayName ?? "Без имени"}
+                                </p>
+                              )}
+
+                              <p className="truncate text-xs text-slate-400">
+                                {account.username ?? account.openId}
                               </p>
-                            )}
-
-                            <p className="truncate text-xs text-slate-400">
-                              {account.username ?? account.openId}
-                            </p>
+                            </div>
                           </div>
-                        </div>
-                      </td>
+                        </td>
 
-                      <td className="px-3 py-4">
-                        <PlatformBadge platform={account.platform} />
-                      </td>
+                        <td className="px-3 py-4">
+                          <PlatformBadge platform={account.platform} />
+                        </td>
 
-                      <td className="px-3 py-4">{account.videosCount}</td>
+                        <td className="px-3 py-4">{account.videosCount}</td>
 
-                      <td className="px-3 py-4">
-                        {formatViews(account.videosFrom1kCount ?? 0)}
-                      </td>
+                        <td className="px-3 py-4">
+                          {formatViews(account.videosFrom1kCount ?? 0)}
+                        </td>
 
-                      <td className="px-3 py-4">
-                        {formatViews(account.likesCount)}
-                      </td>
+                        <td className="px-3 py-4">
+                          {formatViews(account.likesCount)}
+                        </td>
 
-                      <td className="px-3 py-4 font-semibold text-white">
-                        {formatViews(account.viewsCount)}
-                      </td>
+                        <td className="px-3 py-4 font-semibold text-white">
+                          {formatViews(account.viewsCount)}
+                        </td>
 
-                      <td className="px-3 py-4">
-                        {account.platform === "instagram" ? (
-                          <span className="block truncate rounded-full bg-orange-500/10 px-3 py-1 text-xs text-orange-300">
-                            {account.editor?.login ?? "Не найден"}
+                        <td className="px-3 py-4">
+                          {account.platform === "instagram" ? (
+                            <span className="block truncate rounded-full bg-orange-500/10 px-3 py-1 text-xs text-orange-300">
+                              {account.editor?.login ?? "Не найден"}
+                            </span>
+                          ) : (
+                            <span className="text-xs text-slate-500">
+                              Не требуется
+                            </span>
+                          )}
+                        </td>
+
+                        <td className="px-3 py-4">
+                          <select
+                            value={selectedModeratorId}
+                            disabled={isLoading}
+                            onChange={(event) =>
+                              handleBindModerator(account, event.target.value)
+                            }
+                            className="w-full min-w-[160px] rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-xs outline-none disabled:cursor-not-allowed disabled:opacity-60"
+                          >
+                            <option value="">Без модератора</option>
+
+                            {moderators.map((moderator) => (
+                              <option key={moderator.id} value={moderator.id}>
+                                {moderator.login}
+                              </option>
+                            ))}
+                          </select>
+                        </td>
+
+                        <td className="px-3 py-4">
+                          <span
+                            className={
+                              account.error
+                                ? "rounded-full bg-red-500/10 px-3 py-1 text-xs text-red-300"
+                                : "rounded-full bg-emerald-500/10 px-3 py-1 text-xs text-emerald-300"
+                            }
+                          >
+                            {account.error ? "Ошибка" : "Ок"}
                           </span>
-                        ) : (
-                          <span className="text-xs text-slate-500">
-                            Не требуется
-                          </span>
-                        )}
-                      </td>
+                        </td>
 
-                      <td className="px-3 py-4">
-                        <select
-                          value={selectedModeratorId}
-                          disabled={isLoading}
-                          onChange={(event) =>
-                            handleBindModerator(account, event.target.value)
-                          }
-                          className="w-full rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-xs outline-none disabled:cursor-not-allowed disabled:opacity-60"
-                        >
-                          <option value="">Без модератора</option>
-
-                          {moderators.map((moderator) => (
-                            <option key={moderator.id} value={moderator.id}>
-                              {moderator.login}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-
-                      <td className="px-3 py-4">
-                        <span
-                          className={
-                            account.error
-                              ? "rounded-full bg-red-500/10 px-3 py-1 text-xs text-red-300"
-                              : "rounded-full bg-emerald-500/10 px-3 py-1 text-xs text-emerald-300"
-                          }
-                        >
-                          {account.error ? "Ошибка" : "Ок"}
-                        </span>
-                      </td>
-
-                      <td className="rounded-r-2xl px-3 py-4">
-                        <button
-                          disabled={isLoading}
-                          onClick={() => handleDeleteAccount(account)}
-                          className="rounded-xl bg-red-500/15 px-3 py-2 text-xs text-red-300 hover:bg-red-500/25 disabled:cursor-not-allowed disabled:opacity-60"
-                        >
-                          Удалить
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })
-              )}
-            </tbody>
-          </table>
+                        <td className="px-3 py-4">
+                          <button
+                            disabled={isLoading}
+                            onClick={() => handleDeleteAccount(account)}
+                            className="rounded-xl bg-red-500/15 px-3 py-2 text-xs text-red-300 hover:bg-red-500/25 disabled:cursor-not-allowed disabled:opacity-60"
+                          >
+                            Удалить
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })
+                )}
+              </tbody>
+            </table>
+          </div>
         </section>
 
-        <section className="rounded-3xl border border-white/10 bg-white/5 p-6">
+        <section className="rounded-3xl border border-white/10 bg-white/5 p-4 sm:p-6">
           <div className="mb-5 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
               <h2 className="text-2xl font-semibold">Модераторы</h2>
@@ -799,75 +803,80 @@ export default function AdminPage() {
             />
           </div>
 
-          <table className="w-full table-fixed border-separate border-spacing-y-3">
-            <thead>
-              <tr className="text-left text-sm text-slate-400">
-                <th className="px-4 py-2">Логин</th>
-                <th className="px-4 py-2">Аккаунтов</th>
-                <th className="px-4 py-2">Общие просмотры</th>
-                <th className="px-4 py-2">Промежуток</th>
-                <th className="px-4 py-2">Действия</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {isModeratorsFetching ? (
-                <tr>
-                  <td
-                    colSpan={5}
-                    className="px-4 py-10 text-center text-slate-400"
-                  >
-                    <div className="flex items-center justify-center gap-3">
-                      <Spinner className="h-5 w-5" />
-                      Загружаем модераторов...
-                    </div>
-                  </td>
+          <div className="mt-5 overflow-x-auto">
+            <table className="w-full min-w-[760px] border-collapse text-left text-xs xl:text-sm">
+              <thead>
+                <tr className="border-b border-white/10 text-slate-400">
+                  <th className="px-4 py-3 font-medium">Логин</th>
+                  <th className="px-4 py-3 font-medium">Аккаунтов</th>
+                  <th className="px-4 py-3 font-medium">Общие просмотры</th>
+                  <th className="px-4 py-3 font-medium">Промежуток</th>
+                  <th className="px-4 py-3 font-medium">Действия</th>
                 </tr>
-              ) : filteredModerators.length === 0 ? (
-                <tr>
-                  <td
-                    colSpan={5}
-                    className="px-4 py-10 text-center text-slate-400"
-                  >
-                    Нет данных.
-                  </td>
-                </tr>
-              ) : (
-                filteredModerators.map((moderator) => (
-                  <tr key={moderator.id} className="bg-slate-900/80">
-                    <td className="rounded-l-2xl px-4 py-4">
-                      <Link
-                        href={`/moderator/${moderator.id}`}
-                        className="font-medium text-blue-300 hover:text-blue-200 hover:underline"
-                      >
-                        {moderator.login}
-                      </Link>
-                    </td>
+              </thead>
 
-                    <td className="px-4 py-4">{moderator.accountsCount}</td>
-
-                    <td className="px-4 py-4 font-semibold">
-                      {formatViews(moderator.summary.totalViews)}
-                    </td>
-
-                    <td className="px-4 py-4 text-slate-400">
-                      {appliedPeriodLabel}
-                    </td>
-
-                    <td className="rounded-r-2xl px-4 py-4">
-                      <button
-                        disabled={isLoading}
-                        onClick={() => handleDeleteModerator(moderator.id)}
-                        className="rounded-xl bg-red-500/15 px-4 py-2 text-sm text-red-300 hover:bg-red-500/25 disabled:cursor-not-allowed disabled:opacity-60"
-                      >
-                        Удалить
-                      </button>
+              <tbody>
+                {isModeratorsFetching ? (
+                  <tr>
+                    <td
+                      colSpan={5}
+                      className="px-4 py-10 text-center text-slate-400"
+                    >
+                      <div className="flex items-center justify-center gap-3">
+                        <Spinner className="h-5 w-5" />
+                        Загружаем модераторов...
+                      </div>
                     </td>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+                ) : filteredModerators.length === 0 ? (
+                  <tr>
+                    <td
+                      colSpan={5}
+                      className="px-4 py-10 text-center text-slate-400"
+                    >
+                      Нет данных.
+                    </td>
+                  </tr>
+                ) : (
+                  filteredModerators.map((moderator) => (
+                    <tr
+                      key={moderator.id}
+                      className="border-b border-white/5 text-slate-200"
+                    >
+                      <td className="px-4 py-4">
+                        <Link
+                          href={`/moderator/${moderator.id}`}
+                          className="font-medium text-blue-300 hover:text-blue-200 hover:underline"
+                        >
+                          {moderator.login}
+                        </Link>
+                      </td>
+
+                      <td className="px-4 py-4">{moderator.accountsCount}</td>
+
+                      <td className="px-4 py-4 font-semibold">
+                        {formatViews(moderator.summary.totalViews)}
+                      </td>
+
+                      <td className="px-4 py-4 text-slate-400">
+                        {appliedPeriodLabel}
+                      </td>
+
+                      <td className="px-4 py-4">
+                        <button
+                          disabled={isLoading}
+                          onClick={() => handleDeleteModerator(moderator.id)}
+                          className="rounded-xl bg-red-500/15 px-4 py-2 text-sm text-red-300 hover:bg-red-500/25 disabled:cursor-not-allowed disabled:opacity-60"
+                        >
+                          Удалить
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
         </section>
       </div>
 
@@ -922,7 +931,7 @@ export default function AdminPage() {
       )}
 
       {isStatsLoading && (
-        <div className="fixed bottom-6 right-6 z-40 flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900 px-5 py-4 text-sm text-white shadow-2xl">
+        <div className="fixed bottom-6 right-4 z-40 flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900 px-5 py-4 text-sm text-white shadow-2xl sm:right-6">
           <Spinner className="h-5 w-5" />
           Обновляем статистику...
         </div>
