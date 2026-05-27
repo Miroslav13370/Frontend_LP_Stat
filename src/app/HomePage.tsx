@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FaInstagram, FaTiktok, FaUserShield, FaYoutube } from "react-icons/fa";
 
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL?.replace(/\/$/, "");
 
@@ -15,7 +16,6 @@ export default function HomePage() {
             <Link href="/terms" className="transition hover:text-white">
               Terms
             </Link>
-
             <Link href="/privacy" className="transition hover:text-white">
               Privacy
             </Link>
@@ -24,8 +24,8 @@ export default function HomePage() {
       </header>
 
       <section className="relative flex min-h-screen items-center justify-center px-6 py-10">
-        <div className="absolute -left-30` top-20 h-96 w-96 rounded-full bg-[#ff4fa3]/30 blur-[130px]" />
-        <div className="absolute bottom-10 -right-30` h-96 w-96 rounded-full bg-[#5b4dff]/30 blur-[130px]" />
+        <div className="absolute -left-30 top-20 h-96 w-96 rounded-full bg-[#ff4fa3]/30 blur-[130px]" />
+        <div className="absolute -right-30 bottom-10 h-96 w-96 rounded-full bg-[#5b4dff]/30 blur-[130px]" />
         <div className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-[140px]" />
 
         <div className="relative z-10 mx-auto max-w-5xl pt-24 text-center">
@@ -34,42 +34,45 @@ export default function HomePage() {
           </div>
 
           <h1 className="text-4xl font-black tracking-tight sm:text-6xl lg:text-7xl">
-            Аналитика социальных аккаунтов в одном месте
+            Social media account analytics in one place
           </h1>
 
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-white/65">
-            Внутренний сервис организации «Новые люди» для подключения
-            социальных аккаунтов, просмотра статистики видео, анализа активности
-            и управления командной работой.
+            Internal platform for connecting social accounts, viewing video
+            statistics, analyzing activity, and managing team workflows.
           </p>
 
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row sm:flex-wrap">
             <a
-              href={`${serverUrl}/api/auth/tiktok`}
-              className="rounded-2xl bg-[#ff4fa3] px-7 py-4 text-base font-bold text-white shadow-lg shadow-[#ff4fa3]/25 transition hover:scale-[1.03] hover:bg-[#ff2f93]"
+              href={`${serverUrl}/api/auth/tiktok/entry`}
+              className="inline-flex items-center justify-center gap-3 rounded-2xl bg-[#ff4fa3] px-7 py-4 text-base font-bold text-white shadow-lg shadow-[#ff4fa3]/25 transition hover:scale-[1.03] hover:bg-[#ff2f93]"
             >
-              Авторизовать TikTok
+              <FaTiktok className="size-5" />
+              Connect TikTok Account
             </a>
 
             <a
-              href={`${serverUrl}/api/auth/youtube`}
-              className="rounded-2xl bg-white px-7 py-4 text-base font-bold text-[#14142f] transition hover:scale-[1.03] hover:bg-white/90"
+              href={`${serverUrl}/api/auth/youtube/entry`}
+              className="inline-flex items-center justify-center gap-3 rounded-2xl bg-white px-7 py-4 text-base font-bold text-[#14142f] transition hover:scale-[1.03] hover:bg-white/90"
             >
-              Авторизовать YouTube
+              <FaYoutube className="size-5 text-red-600" />
+              Connect YouTube Account
+            </a>
+
+            <a
+              href={`${serverUrl}/api/auth/instagram`}
+              className="inline-flex items-center justify-center gap-3 rounded-2xl bg-linear-to-r from-[#ff4fa3] to-[#8b7cff] px-7 py-4 text-base font-bold text-white shadow-lg shadow-[#ff4fa3]/25 transition hover:scale-[1.03]"
+            >
+              <FaInstagram className="size-5" />
+              Connect Instagram Account
             </a>
 
             <Link
-              href="/instagram/connect"
-              className="rounded-2xl bg-linear-to-r from-[#ff4fa3] to-[#8b7cff] px-7 py-4 text-base font-bold text-white shadow-lg shadow-[#ff4fa3]/25 transition hover:scale-[1.03]"
-            >
-              Подключить Instagram
-            </Link>
-
-            <Link
               href="/moderator"
-              className="rounded-2xl border border-white/15 bg-white/10 px-7 py-4 text-base font-bold text-white backdrop-blur transition hover:scale-[1.03] hover:bg-white/15"
+              className="inline-flex items-center justify-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-7 py-4 text-base font-bold text-white backdrop-blur transition hover:scale-[1.03] hover:bg-white/15"
             >
-              Войти как модератор
+              <FaUserShield className="size-5" />
+              Moderator Login
             </Link>
           </div>
 
@@ -77,21 +80,21 @@ export default function HomePage() {
             <div className="rounded-3xl border border-white/10 bg-white/6 p-6 backdrop-blur">
               <p className="text-3xl font-black text-[#ff4fa3]">Connect</p>
               <p className="mt-2 text-sm text-white/55">
-                подключение аккаунтов и ручные отчёты
+                connect accounts and submit manual reports
               </p>
             </div>
 
             <div className="rounded-3xl border border-white/10 bg-white/6 p-6 backdrop-blur">
               <p className="text-3xl font-black text-white">Stats</p>
               <p className="mt-2 text-sm text-white/55">
-                просмотры, видео и активность
+                video views, statistics, and account activity
               </p>
             </div>
 
             <div className="rounded-3xl border border-white/10 bg-white/6 p-6 backdrop-blur">
               <p className="text-3xl font-black text-[#8b7cff]">Admin</p>
               <p className="mt-2 text-sm text-white/55">
-                управление командой и аккаунтами
+                manage team members and connected accounts
               </p>
             </div>
           </div>

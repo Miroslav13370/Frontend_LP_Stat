@@ -20,8 +20,33 @@ export type TikTokVideo = {
 };
 
 export type TikTokUserStatisticsResponse = {
-  totalViews: number;
-  bestVideo: TikTokVideo | null;
+  account: {
+    id: string;
+    platform: "tiktok";
+    openId: string;
+    username: string | null;
+    displayName: string | null;
+    avatarUrl: string | null;
+    moderatorId: string | null;
+    isAuthorContent: boolean;
+    videosCount: number;
+    likesCount: number;
+    viewsCount: number;
+    videosFrom1kCount: number;
+    plan: {
+      plan: number;
+      label: string;
+      isCompleted: boolean;
+    };
+    dePremium: number;
+    bestVideo: TikTokVideo | null;
+    error: string | null;
+    moderator: {
+      id: string;
+      login: string;
+    } | null;
+  };
+  videos: TikTokVideo[];
 };
 
 export type UpdateAuthorContentDto = {
