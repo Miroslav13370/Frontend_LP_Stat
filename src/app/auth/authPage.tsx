@@ -18,7 +18,6 @@ export default function AuthPage() {
     register,
     handleSubmit,
     reset,
-    watch,
     formState: { errors },
   } = useForm<AuthFormValues>({
     mode: "onChange",
@@ -107,8 +106,8 @@ export default function AuthPage() {
                   placeholder="Повторите пароль"
                   {...register("confirmPassword", {
                     required: "Повторите пароль",
-                    validate: (value) =>
-                      value === watch("password") || "Пароли не совпадают",
+                    validate: (value, formValues) =>
+                      value === formValues.password || "Пароли не совпадают",
                   })}
                   className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm outline-none transition placeholder:text-zinc-500 focus:border-pink-500"
                 />

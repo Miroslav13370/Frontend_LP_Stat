@@ -485,6 +485,7 @@ export default function ModeratorPage({
 
       window.clearTimeout(timeoutId);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode, moderatorId]);
 
   const daysDiff = useMemo(

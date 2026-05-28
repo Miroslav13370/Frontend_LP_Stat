@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { NO_INDEX_PAGE } from "@/src/constants/seo.constants";
 
 export const metadata: Metadata = {
-  title: "Админское редактрование",
+  title: "Moderator Management",
   ...NO_INDEX_PAGE,
 };
 

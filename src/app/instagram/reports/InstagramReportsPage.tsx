@@ -357,6 +357,7 @@ export default function InstagramReportsPage() {
     return () => {
       isMounted = false;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
   const handleChangeAccount = async (accountId: string) => {

@@ -10,25 +10,50 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = "https://new-people.online";
+const siteDescription =
+  "New People is a social account analytics and moderator operations platform for authorized TikTok, YouTube, and Instagram report workflows.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://new-people.online"),
+  metadataBase: new URL(siteUrl),
+  applicationName: "New People",
   title: {
-    default: "New People ",
+    default: "New People",
     template: "%s | New People",
   },
-  description:
-    "New People is a platform for viewing social media account analytics and moderator performance statistics.",
-  icons: {
-    icon: "/lp.ico",
-    shortcut: "/lp.ico",
-    apple: "/lp.png",
+  description: siteDescription,
+  alternates: {
+    canonical: "/",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/lp.png", type: "image/png", sizes: "1254x1254" },
+    ],
+    shortcut: ["/favicon.ico"],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "1254x1254" }],
+  },
+  manifest: "/site.webmanifest",
   openGraph: {
     title: "New People",
-    description:
-      "Platform for viewing social media account analytics and moderator performance statistics.",
-    url: "https://new-people.online",
+    description: siteDescription,
+    url: siteUrl,
     siteName: "New People",
+    type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: "/lp.png",
+        width: 1254,
+        height: 1254,
+        alt: "New People logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "New People",
+    description: siteDescription,
     images: ["/lp.png"],
   },
 };

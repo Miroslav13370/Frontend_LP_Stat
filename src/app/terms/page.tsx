@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 
-import { NO_INDEX_PAGE } from "@/src/constants/seo.constants";
 import Terms from "./Terms";
 
 export const metadata: Metadata = {
-  title: "Terms",
-  ...NO_INDEX_PAGE,
+  title: "Terms of Service",
+  description:
+    "Terms of Service for New People, including authorized use, TikTok Login Kit, YouTube API, Instagram report workflows, moderator responsibilities, and prohibited activities.",
+  alternates: {
+    canonical: "/terms",
+  },
 };
 
 export default function Page() {

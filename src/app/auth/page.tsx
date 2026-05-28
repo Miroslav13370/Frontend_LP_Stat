@@ -4,7 +4,7 @@ import { NO_INDEX_PAGE } from "@/src/constants/seo.constants";
 import AuthPage from "./authPage";
 
 export const metadata: Metadata = {
-  title: "Авторизация модератора",
+  title: "Moderator Authorization",
   ...NO_INDEX_PAGE,
 };
 

@@ -4,7 +4,7 @@ import { NO_INDEX_PAGE } from "@/src/constants/seo.constants";
 import ModeratorPage from "./ModeratorPage";
 
 export const metadata: Metadata = {
-  title: "Страница модератора",
+  title: "Moderator Dashboard",
   ...NO_INDEX_PAGE,
 };
 

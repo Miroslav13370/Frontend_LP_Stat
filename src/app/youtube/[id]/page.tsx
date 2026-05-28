@@ -1,5 +1,9 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
+import { NO_INDEX_PAGE } from "@/src/constants/seo.constants";
+import { PublicLayout } from "@/src/app/PublicLayout";
 
 type YouTubeUser = {
   id: string;
@@ -17,6 +21,11 @@ type YouTubeUser = {
 };
 
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+
+export const metadata: Metadata = {
+  title: "YouTube Account",
+  ...NO_INDEX_PAGE,
+};
 
 async function getYouTubeUser(id: string): Promise<YouTubeUser | null> {
   const response = await fetch(`${serverUrl}/api/youtube-user/by-id/${id}`, {
@@ -44,17 +53,19 @@ export default async function YouTubePage({
   }
 
   return (
-    <div className="min-h-screen bg-[#070A13] px-6 py-10 text-white">
-      <div className="mx-auto max-w-4xl">
+    <PublicLayout>
+      <main className="px-6 pb-12 pt-28 text-white">
+        <div className="mx-auto max-w-4xl">
         <Link
           href="/"
           className="text-sm text-white/50 transition hover:text-white"
         >
-          ← На главную
+          Back to New People
         </Link>
 
-        <section className="mt-10 rounded-3xl border border-white/10 bg-white/[0.04] p-8">
+        <section className="mt-10 rounded-[8px] border border-white/10 bg-white/[0.04] p-8">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={user.youtube_thumbnail_url || "/uploads/no-user-image.jpg"}
               alt={user.youtube_title || "YouTube channel"}
@@ -63,11 +74,11 @@ export default async function YouTubePage({
 
             <div>
               <p className="mb-2 text-sm text-red-400">
-                YouTube аккаунт подключён
+                YouTube account connected
               </p>
 
               <h1 className="text-3xl font-bold">
-                {user.youtube_title || "Без названия"}
+                {user.youtube_title || "Untitled channel"}
               </h1>
 
               {user.youtube_custom_url && (
@@ -81,8 +92,10 @@ export default async function YouTubePage({
           </div>
 
           {user.youtube_description && (
-            <div className="mt-8 rounded-2xl border border-white/10 bg-black/20 p-5">
-              <h2 className="mb-2 text-lg font-semibold">Описание канала</h2>
+            <div className="mt-8 rounded-[8px] border border-white/10 bg-black/20 p-5">
+              <h2 className="mb-2 text-lg font-semibold">
+                Channel description
+              </h2>
 
               <p className="whitespace-pre-line text-sm leading-6 text-white/60">
                 {user.youtube_description}
@@ -91,30 +104,31 @@ export default async function YouTubePage({
           )}
 
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
-            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
-              <p className="text-sm text-white/50">Тип контента</p>
+            <div className="rounded-[8px] border border-white/10 bg-white/[0.04] p-5">
+              <p className="text-sm text-white/50">Content type</p>
 
               <p className="mt-2 text-xl font-bold">
-                {user.isAuthorContent ? "Авторский" : "Не авторский"}
+                {user.isAuthorContent ? "Author content" : "Not marked"}
               </p>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
-              <p className="text-sm text-white/50">План</p>
+            <div className="rounded-[8px] border border-white/10 bg-white/[0.04] p-5">
+              <p className="text-sm text-white/50">Plan target</p>
 
               <p className="mt-2 text-xl font-bold">{user.planTarget}</p>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
-              <p className="text-sm text-white/50">Модератор</p>
+            <div className="rounded-[8px] border border-white/10 bg-white/[0.04] p-5">
+              <p className="text-sm text-white/50">Moderator</p>
 
               <p className="mt-2 text-xl font-bold">
-                {user.moderatorId ? "Назначен" : "Не назначен"}
+                {user.moderatorId ? "Assigned" : "Not assigned"}
               </p>
             </div>
           </div>
         </section>
-      </div>
-    </div>
+        </div>
+      </main>
+    </PublicLayout>
   );
 }

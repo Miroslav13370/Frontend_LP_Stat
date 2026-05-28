@@ -4,7 +4,7 @@ import { NO_INDEX_PAGE } from "@/src/constants/seo.constants";
 import TikTokAccountPage from "./tikTokpage";
 
 export const metadata: Metadata = {
-  title: "Страница аккаунта",
+  title: "TikTok Account",
   ...NO_INDEX_PAGE,
 };
 

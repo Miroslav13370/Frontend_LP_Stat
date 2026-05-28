@@ -4,7 +4,7 @@ import { NO_INDEX_PAGE } from "@/src/constants/seo.constants";
 import InstagramReportsPage from "./InstagramReportsPage";
 
 export const metadata: Metadata = {
-  title: "Страница отчетов",
+  title: "Instagram Reports",
   ...NO_INDEX_PAGE,
 };
 

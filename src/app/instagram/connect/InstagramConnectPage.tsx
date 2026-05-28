@@ -66,8 +66,8 @@ export default function InstagramConnectPage() {
     } catch {
       setError(
         isRegisterMode
-          ? "Не удалось подключить Instagram аккаунт. Проверьте данные."
-          : "Не удалось войти. Проверьте логин и пароль.",
+          ? "Could not create the Instagram report account. Check the details and try again."
+          : "Could not sign in. Check the login and password.",
       );
     } finally {
       setIsLoading(false);
@@ -75,30 +75,30 @@ export default function InstagramConnectPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#14142f] px-4 py-10 text-white">
+    <main className="px-4 pb-12 pt-28 text-white">
       <div className="mx-auto max-w-2xl">
         <Link href="/" className="text-sm text-white/60 hover:text-white">
-          ← На главную
+          Back to New People
         </Link>
 
-        <div className="mt-8 rounded-3xl border border-white/10 bg-white/[0.06] p-6 shadow-2xl backdrop-blur">
+        <div className="mt-8 rounded-[8px] border border-white/10 bg-white/[0.05] p-6 shadow-2xl shadow-black/30">
           <p className="text-sm font-medium text-[#ff4fa3]">
             Instagram Reports
           </p>
 
-          <h1 className="mt-2 text-3xl font-black">
+          <h1 className="mt-2 text-3xl font-bold">
             {isRegisterMode
-              ? "Подключите Instagram аккаунт"
-              : "Войдите в аккаунт монтажёра"}
+              ? "Create an Instagram report account"
+              : "Sign in to an editor account"}
           </h1>
 
           <p className="mt-3 text-sm leading-6 text-white/60">
             {isRegisterMode
-              ? "Создайте доступ монтажёра и укажите Instagram аккаунт, по которому будете еженедельно отправлять статистику на проверку."
-              : "Введите логин и пароль, чтобы перейти к своим Instagram отчётам."}
+              ? "Register editor access and the Instagram account that will submit metrics for moderator review."
+              : "Enter your login and password to open your Instagram reports."}
           </p>
 
-          <div className="mt-6 grid grid-cols-2 gap-2 rounded-2xl border border-white/10 bg-black/20 p-1">
+          <div className="mt-6 grid grid-cols-2 gap-2 rounded-[8px] border border-white/10 bg-black/20 p-1">
             <button
               type="button"
               disabled={isLoading}
@@ -108,11 +108,11 @@ export default function InstagramConnectPage() {
               }}
               className={
                 isRegisterMode
-                  ? "rounded-xl bg-[#ff4fa3] px-4 py-3 text-sm font-bold text-white"
-                  : "rounded-xl px-4 py-3 text-sm font-bold text-white/60 transition hover:bg-white/10 hover:text-white"
+                  ? "rounded-[8px] bg-[#ff4fa3] px-4 py-3 text-sm font-bold text-white"
+                  : "rounded-[8px] px-4 py-3 text-sm font-bold text-white/60 transition hover:bg-white/10 hover:text-white"
               }
             >
-              Подключить
+              Register
             </button>
 
             <button
@@ -124,30 +124,32 @@ export default function InstagramConnectPage() {
               }}
               className={
                 !isRegisterMode
-                  ? "rounded-xl bg-[#ff4fa3] px-4 py-3 text-sm font-bold text-white"
-                  : "rounded-xl px-4 py-3 text-sm font-bold text-white/60 transition hover:bg-white/10 hover:text-white"
+                  ? "rounded-[8px] bg-[#ff4fa3] px-4 py-3 text-sm font-bold text-white"
+                  : "rounded-[8px] px-4 py-3 text-sm font-bold text-white/60 transition hover:bg-white/10 hover:text-white"
               }
             >
-              Войти
+              Sign in
             </button>
           </div>
 
           <form onSubmit={handleSubmit} className="mt-8 space-y-4">
             <div>
-              <label className="mb-2 block text-sm text-white/70">Логин</label>
+              <label className="mb-2 block text-sm text-white/70">Login</label>
 
               <input
                 value={login}
                 onChange={(event) => setLogin(event.target.value)}
                 required
                 disabled={isLoading}
-                className="w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 outline-none transition placeholder:text-white/30 focus:border-[#ff4fa3] disabled:cursor-not-allowed disabled:opacity-60"
+                className="w-full rounded-[8px] border border-white/10 bg-black/20 px-4 py-3 outline-none transition placeholder:text-white/30 focus:border-[#ff4fa3] disabled:cursor-not-allowed disabled:opacity-60"
                 placeholder="editor_login"
               />
             </div>
 
             <div>
-              <label className="mb-2 block text-sm text-white/70">Пароль</label>
+              <label className="mb-2 block text-sm text-white/70">
+                Password
+              </label>
 
               <input
                 type="password"
@@ -156,8 +158,8 @@ export default function InstagramConnectPage() {
                 required
                 minLength={6}
                 disabled={isLoading}
-                className="w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 outline-none transition placeholder:text-white/30 focus:border-[#ff4fa3] disabled:cursor-not-allowed disabled:opacity-60"
-                placeholder="Минимум 6 символов"
+                className="w-full rounded-[8px] border border-white/10 bg-black/20 px-4 py-3 outline-none transition placeholder:text-white/30 focus:border-[#ff4fa3] disabled:cursor-not-allowed disabled:opacity-60"
+                placeholder="At least 6 characters"
               />
             </div>
 
@@ -173,14 +175,14 @@ export default function InstagramConnectPage() {
                     onChange={(event) => setUsername(event.target.value)}
                     required
                     disabled={isLoading}
-                    className="w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 outline-none transition placeholder:text-white/30 focus:border-[#ff4fa3] disabled:cursor-not-allowed disabled:opacity-60"
+                    className="w-full rounded-[8px] border border-white/10 bg-black/20 px-4 py-3 outline-none transition placeholder:text-white/30 focus:border-[#ff4fa3] disabled:cursor-not-allowed disabled:opacity-60"
                     placeholder="example_account"
                   />
                 </div>
 
                 <div>
                   <label className="mb-2 block text-sm text-white/70">
-                    Ссылка на аккаунт
+                    Account URL
                   </label>
 
                   <input
@@ -189,14 +191,14 @@ export default function InstagramConnectPage() {
                     onChange={(event) => setAccountUrl(event.target.value)}
                     required
                     disabled={isLoading}
-                    className="w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 outline-none transition placeholder:text-white/30 focus:border-[#ff4fa3] disabled:cursor-not-allowed disabled:opacity-60"
+                    className="w-full rounded-[8px] border border-white/10 bg-black/20 px-4 py-3 outline-none transition placeholder:text-white/30 focus:border-[#ff4fa3] disabled:cursor-not-allowed disabled:opacity-60"
                     placeholder="https://www.instagram.com/example_account"
                   />
                 </div>
 
                 <div>
                   <label className="mb-2 block text-sm text-white/70">
-                    Ссылка на аватарку
+                    Avatar URL
                   </label>
 
                   <input
@@ -204,15 +206,15 @@ export default function InstagramConnectPage() {
                     value={avatarUrl}
                     onChange={(event) => setAvatarUrl(event.target.value)}
                     disabled={isLoading}
-                    className="w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 outline-none transition placeholder:text-white/30 focus:border-[#ff4fa3] disabled:cursor-not-allowed disabled:opacity-60"
-                    placeholder="Необязательно"
+                    className="w-full rounded-[8px] border border-white/10 bg-black/20 px-4 py-3 outline-none transition placeholder:text-white/30 focus:border-[#ff4fa3] disabled:cursor-not-allowed disabled:opacity-60"
+                    placeholder="Optional"
                   />
                 </div>
               </>
             )}
 
             {error && (
-              <div className="rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-200">
+              <div className="rounded-[8px] border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-200">
                 {error}
               </div>
             )}
@@ -220,19 +222,19 @@ export default function InstagramConnectPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full rounded-2xl bg-linear-to-r from-[#ff4fa3] to-[#8b7cff] px-6 py-4 font-bold text-white transition hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-60"
+              className="w-full rounded-[8px] bg-[#ff4fa3] px-6 py-4 font-bold text-white transition hover:bg-[#ff2f93] disabled:cursor-not-allowed disabled:opacity-60"
             >
               {isLoading
                 ? isRegisterMode
-                  ? "Подключаем..."
-                  : "Входим..."
+                  ? "Creating..."
+                  : "Signing in..."
                 : isRegisterMode
-                  ? "Подключить Instagram"
-                  : "Войти"}
+                  ? "Create Instagram report account"
+                  : "Sign in"}
             </button>
           </form>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

@@ -1,30 +1,41 @@
+import Image from "next/image";
 import Link from "next/link";
+
+import { PublicLayout } from "./PublicLayout";
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-950 px-6 text-white">
-      <section className="w-full max-w-xl rounded-3xl border border-white/10 bg-white/5 p-8 text-center shadow-2xl">
-        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-3xl bg-red-500/15 text-3xl font-bold text-red-300">
-          404
-        </div>
+    <PublicLayout>
+      <main className="flex min-h-screen items-center justify-center px-6 py-28">
+        <section className="w-full max-w-xl rounded-[8px] border border-white/10 bg-white/[0.04] p-8 text-center shadow-2xl shadow-black/30">
+          <Image
+            src="/lp.png"
+            alt="New People logo"
+            width={72}
+            height={72}
+            className="mx-auto h-[72px] w-[72px] rounded-[8px] object-cover"
+          />
 
-        <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
-          Страница не найдена
-        </h1>
+          <p className="mt-6 text-sm font-semibold text-[#25f4ee]">
+            New People
+          </p>
 
-        <p className="mt-4 text-slate-400">
-          Такой страницы не существует или она была удалена.
-        </p>
+          <h1 className="mt-3 text-3xl font-bold text-white md:text-4xl">
+            Page not found
+          </h1>
 
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+          <p className="mt-4 text-sm leading-6 text-white/60">
+            The page does not exist or is no longer available.
+          </p>
+
           <Link
             href="/"
-            className="rounded-xl bg-blue-500 px-6 py-3 text-sm font-medium text-white hover:bg-blue-600"
+            className="mt-8 inline-flex min-h-11 items-center justify-center rounded-[8px] bg-[#25f4ee] px-6 py-3 text-sm font-semibold text-black hover:bg-[#6ffbf6]"
           >
-            На главную
+            Back to New People
           </Link>
-        </div>
-      </section>
-    </div>
+        </section>
+      </main>
+    </PublicLayout>
   );
 }

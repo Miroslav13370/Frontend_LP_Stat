@@ -1,105 +1,193 @@
+import Image from "next/image";
 import Link from "next/link";
 import { FaInstagram, FaTiktok, FaUserShield, FaYoutube } from "react-icons/fa";
-import { BrandHeader } from "./BrandHeader";
+
+import { PublicLayout } from "./PublicLayout";
 
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL?.replace(/\/$/, "");
 
+const getServerPath = (path: string) =>
+  serverUrl ? `${serverUrl}${path}` : path;
+
+const metrics = [
+  { label: "Supported workflows", value: "TikTok, YouTube, Instagram reports" },
+  { label: "TikTok permissions", value: "user.info.basic, video.list" },
+  { label: "Review workflows", value: "Moderators and admins" },
+];
+
+const workflow = [
+  {
+    title: "Authorized account connection",
+    text: "Creators connect TikTok and YouTube through official OAuth flows. New People stores tokens server-side and uses only approved scopes.",
+  },
+  {
+    title: "Analytics processing",
+    text: "Video metadata and account statistics are organized into reporting periods for internal performance review.",
+  },
+  {
+    title: "Moderator operations",
+    text: "Administrators assign connected accounts, review submitted reports, and manage internal moderation workflows.",
+  },
+];
+
 export default function HomePage() {
   return (
-    <div className="min-h-screen overflow-hidden bg-[#14142f] text-white">
-      <BrandHeader />
+    <PublicLayout>
+      <main>
+        <section className="border-b border-white/10 px-4 pb-16 pt-28 sm:px-6 lg:pb-20 lg:pt-32">
+          <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1fr_480px]">
+            <div>
+              <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-white/70">
+                <Image
+                  src="/lp.png"
+                  alt="New People logo"
+                  width={24}
+                  height={24}
+                  priority
+                  className="h-6 w-6 rounded-md object-cover"
+                />
+                New People
+              </div>
 
-      <section className="relative flex min-h-screen items-center justify-center px-6 py-10">
-        <div className="absolute -left-30 top-20 h-96 w-96 rounded-full bg-[#ff4fa3]/30 blur-[130px]" />
-        <div className="absolute -right-30 bottom-10 h-96 w-96 rounded-full bg-[#5b4dff]/30 blur-[130px]" />
-        <div className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-[140px]" />
+              <h1 className="max-w-4xl text-4xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-7xl">
+                Social account analytics for authorized creator operations.
+              </h1>
 
-        <div className="relative z-10 mx-auto max-w-5xl pt-24 text-center">
-          <div className="mb-6 inline-flex rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm text-white/75 backdrop-blur">
-            New People Analytics
-          </div>
-
-          <h1 className="text-4xl font-black tracking-tight sm:text-6xl lg:text-7xl">
-            Social media account analytics in one place
-          </h1>
-
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-white/65">
-            New People Analytics is an internal platform for connecting social
-            accounts, viewing video statistics, analyzing account activity, and
-            managing moderator performance workflows.
-          </p>
-
-          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row sm:flex-wrap">
-            <a
-              href={`${serverUrl}/api/auth/tiktok/entry`}
-              className="inline-flex items-center justify-center gap-3 rounded-2xl bg-[#ff4fa3] px-7 py-4 text-base font-bold text-white shadow-lg shadow-[#ff4fa3]/25 transition hover:scale-[1.03] hover:bg-[#ff2f93]"
-            >
-              <FaTiktok className="size-5" />
-              Connect TikTok Account
-            </a>
-
-            <a
-              href={`${serverUrl}/api/auth/youtube/entry`}
-              className="inline-flex items-center justify-center gap-3 rounded-2xl bg-white px-7 py-4 text-base font-bold text-[#14142f] transition hover:scale-[1.03] hover:bg-white/90"
-            >
-              <FaYoutube className="size-5 text-red-600" />
-              Connect YouTube Account
-            </a>
-
-            <a
-              href={`${serverUrl}/api/auth/instagram`}
-              className="inline-flex items-center justify-center gap-3 rounded-2xl bg-linear-to-r from-[#ff4fa3] to-[#8b7cff] px-7 py-4 text-base font-bold text-white shadow-lg shadow-[#ff4fa3]/25 transition hover:scale-[1.03]"
-            >
-              <FaInstagram className="size-5" />
-              Connect Instagram Account
-            </a>
-
-            <Link
-              href="/moderator"
-              className="inline-flex items-center justify-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-7 py-4 text-base font-bold text-white backdrop-blur transition hover:scale-[1.03] hover:bg-white/15"
-            >
-              <FaUserShield className="size-5" />
-              Moderator Login
-            </Link>
-          </div>
-
-          <div className="mt-16 grid gap-4 sm:grid-cols-3">
-            <div className="rounded-3xl border border-white/10 bg-white/6 p-6 backdrop-blur">
-              <p className="text-3xl font-black text-[#ff4fa3]">Connect</p>
-
-              <p className="mt-2 text-sm text-white/55">
-                Connect creator accounts and submit account reports.
+              <p className="mt-6 max-w-2xl text-base leading-8 text-white/70 sm:text-lg">
+                New People helps approved team members connect social accounts,
+                review video performance, and manage moderator workflows from one
+                secure internal platform.
               </p>
+
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <a
+                  href={getServerPath("/api/auth/tiktok/entry")}
+                  className="inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] bg-[#fe2c55] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#ff4168]"
+                >
+                  <FaTiktok className="size-5" />
+                  Connect TikTok
+                </a>
+
+                <a
+                  href={getServerPath("/api/auth/youtube/entry")}
+                  className="inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
+                >
+                  <FaYoutube className="size-5 text-red-600" />
+                  Connect YouTube
+                </a>
+
+                <a
+                  href="/instagram/connect"
+                  className="inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] border border-white/15 bg-white/[0.06] px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/[0.1]"
+                >
+                  <FaInstagram className="size-5 text-[#ffbd59]" />
+                  Instagram reports
+                </a>
+
+                <Link
+                  href="/moderator"
+                  className="inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] border border-[#25f4ee]/35 bg-[#25f4ee]/10 px-5 py-3 text-sm font-semibold text-[#25f4ee] transition hover:bg-[#25f4ee]/15"
+                >
+                  <FaUserShield className="size-5" />
+                  Moderator login
+                </Link>
+              </div>
             </div>
 
-            <div className="rounded-3xl border border-white/10 bg-white/6 p-6 backdrop-blur">
-              <p className="text-3xl font-black text-white">Stats</p>
+            <div className="rounded-[8px] border border-white/10 bg-[#101114] shadow-2xl shadow-black/30">
+              <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+                <div className="flex items-center gap-3">
+                  <Image
+                    src="/lp.png"
+                    alt="New People logo"
+                    width={34}
+                    height={34}
+                    className="h-8 w-8 rounded-lg object-cover"
+                  />
+                  <div>
+                    <p className="text-sm font-semibold">New People</p>
+                    <p className="text-xs text-white/50">Operations view</p>
+                  </div>
+                </div>
+                <span className="rounded-full bg-emerald-400/10 px-3 py-1 text-xs text-emerald-300">
+                  Authorized
+                </span>
+              </div>
 
-              <p className="mt-2 text-sm text-white/55">
-                View video views, account statistics, and social activity.
-              </p>
-            </div>
+              <div className="grid grid-cols-3 border-b border-white/10">
+                {metrics.map((item) => (
+                  <div
+                    key={item.label}
+                    className="border-r border-white/10 px-4 py-5 last:border-r-0"
+                  >
+                    <p className="text-xs text-white/50">{item.label}</p>
+                    <p className="mt-2 text-sm font-semibold leading-5 text-white">
+                      {item.value}
+                    </p>
+                  </div>
+                ))}
+              </div>
 
-            <div className="rounded-3xl border border-white/10 bg-white/6 p-6 backdrop-blur">
-              <p className="text-3xl font-black text-[#8b7cff]">Admin</p>
-
-              <p className="mt-2 text-sm text-white/55">
-                Manage moderators, connected accounts, and analytics workflows.
-              </p>
+              <div className="space-y-1 p-5">
+                {[
+                  ["TikTok account", "video.list data refreshed", "#25f4ee"],
+                  ["YouTube channel", "readonly profile connected", "#ffffff"],
+                  ["Instagram report", "pending moderator review", "#ffbd59"],
+                ].map(([title, detail, color]) => (
+                  <div
+                    key={title}
+                    className="grid grid-cols-[12px_1fr_auto] items-center gap-3 border-b border-white/10 py-4 last:border-b-0"
+                  >
+                    <span
+                      className="h-3 w-3 rounded-full"
+                      style={{ backgroundColor: color }}
+                    />
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-medium">{title}</p>
+                      <p className="truncate text-xs text-white/50">{detail}</p>
+                    </div>
+                    <span className="text-xs text-white/40">Review</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
+        </section>
 
-          <div className="mt-10 flex justify-center gap-5 text-sm text-white/45">
-            <Link href="/terms" className="hover:text-white">
-              Terms of Service
-            </Link>
-
-            <Link href="/privacy" className="hover:text-white">
-              Privacy Policy
-            </Link>
+        <section className="px-4 py-14 sm:px-6 lg:py-20">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid gap-4 md:grid-cols-3">
+              {workflow.map((item) => (
+                <article
+                  key={item.title}
+                  className="rounded-[8px] border border-white/10 bg-white/[0.035] p-6"
+                >
+                  <h2 className="text-lg font-semibold text-white">
+                    {item.title}
+                  </h2>
+                  <p className="mt-3 text-sm leading-7 text-white/60">
+                    {item.text}
+                  </p>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        <section className="border-t border-white/10 px-4 py-8 sm:px-6">
+          <div className="mx-auto flex max-w-7xl flex-col gap-4 text-sm text-white/50 sm:flex-row sm:items-center sm:justify-between">
+            <p>New People uses official platform APIs only with user consent.</p>
+            <div className="flex gap-5">
+              <Link href="/terms" className="hover:text-white">
+                Terms of Service
+              </Link>
+              <Link href="/privacy" className="hover:text-white">
+                Privacy Policy
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+    </PublicLayout>
   );
 }
