@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import { useParams } from "next/navigation";
+
+import { BrandHeader } from "@/src/app/BrandHeader";
 import {
   useGetTikTokUserByIdQuery,
   useGetTikTokUserStatisticsQuery,
@@ -95,13 +97,17 @@ export default function TikTokAccountPage() {
 
   if (isLoading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-zinc-950 text-white">
-        <div className="text-center">
-          <div className="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-white/10 border-t-pink-500" />
+      <div className="min-h-screen bg-zinc-950 px-6 py-28 text-white">
+        <BrandHeader />
 
-          <p className="mt-4 text-sm text-zinc-400">
-            Loading TikTok account...
-          </p>
+        <div className="flex min-h-[70vh] items-center justify-center">
+          <div className="text-center">
+            <div className="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-white/10 border-t-pink-500" />
+
+            <p className="mt-4 text-sm text-zinc-400">
+              Loading TikTok account...
+            </p>
+          </div>
         </div>
       </div>
     );
@@ -109,14 +115,20 @@ export default function TikTokAccountPage() {
 
   if (!account) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-zinc-950 text-white">
-        Account not found
+      <div className="min-h-screen bg-zinc-950 px-6 py-28 text-white">
+        <BrandHeader />
+
+        <div className="flex min-h-[70vh] items-center justify-center">
+          Account not found
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950 px-6 py-8 text-white">
+    <div className="min-h-screen bg-zinc-950 px-6 py-28 text-white">
+      <BrandHeader />
+
       <div className="mx-auto max-w-5xl space-y-8">
         <div>
           <p className="text-sm text-pink-400">TikTok account</p>

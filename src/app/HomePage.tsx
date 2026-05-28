@@ -1,27 +1,13 @@
 import Link from "next/link";
 import { FaInstagram, FaTiktok, FaUserShield, FaYoutube } from "react-icons/fa";
+import { BrandHeader } from "./BrandHeader";
 
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL?.replace(/\/$/, "");
 
 export default function HomePage() {
   return (
     <div className="min-h-screen overflow-hidden bg-[#14142f] text-white">
-      <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-[#14142f]/80 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <Link href="/" className="text-lg font-black tracking-wide">
-            Новые <span className="text-[#ff4fa3]">люди</span>
-          </Link>
-
-          <nav className="flex items-center gap-5 text-sm text-white/70">
-            <Link href="/terms" className="transition hover:text-white">
-              Terms
-            </Link>
-            <Link href="/privacy" className="transition hover:text-white">
-              Privacy
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <BrandHeader />
 
       <section className="relative flex min-h-screen items-center justify-center px-6 py-10">
         <div className="absolute -left-30 top-20 h-96 w-96 rounded-full bg-[#ff4fa3]/30 blur-[130px]" />
@@ -30,7 +16,7 @@ export default function HomePage() {
 
         <div className="relative z-10 mx-auto max-w-5xl pt-24 text-center">
           <div className="mb-6 inline-flex rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm text-white/75 backdrop-blur">
-            Social Media Analytics Platform
+            New People Analytics
           </div>
 
           <h1 className="text-4xl font-black tracking-tight sm:text-6xl lg:text-7xl">
@@ -38,8 +24,9 @@ export default function HomePage() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-white/65">
-            Internal platform for connecting social accounts, viewing video
-            statistics, analyzing activity, and managing team workflows.
+            New People Analytics is an internal platform for connecting social
+            accounts, viewing video statistics, analyzing account activity, and
+            managing moderator performance workflows.
           </p>
 
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row sm:flex-wrap">
@@ -79,22 +66,25 @@ export default function HomePage() {
           <div className="mt-16 grid gap-4 sm:grid-cols-3">
             <div className="rounded-3xl border border-white/10 bg-white/6 p-6 backdrop-blur">
               <p className="text-3xl font-black text-[#ff4fa3]">Connect</p>
+
               <p className="mt-2 text-sm text-white/55">
-                connect accounts and submit manual reports
+                Connect creator accounts and submit account reports.
               </p>
             </div>
 
             <div className="rounded-3xl border border-white/10 bg-white/6 p-6 backdrop-blur">
               <p className="text-3xl font-black text-white">Stats</p>
+
               <p className="mt-2 text-sm text-white/55">
-                video views, statistics, and account activity
+                View video views, account statistics, and social activity.
               </p>
             </div>
 
             <div className="rounded-3xl border border-white/10 bg-white/6 p-6 backdrop-blur">
               <p className="text-3xl font-black text-[#8b7cff]">Admin</p>
+
               <p className="mt-2 text-sm text-white/55">
-                manage team members and connected accounts
+                Manage moderators, connected accounts, and analytics workflows.
               </p>
             </div>
           </div>
