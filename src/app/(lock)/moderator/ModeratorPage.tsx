@@ -311,7 +311,7 @@ export default function ModeratorPage({
 
   const [deleteAccountId, setDeleteAccountId] = useState<string | null>(null);
 
-  const [instagramConnectKey, setInstagramConnectKey] = useState("");
+  const [instagramUsername, setInstagramUsername] = useState("");
 
   const [isInstagramConnecting, setIsInstagramConnecting] = useState(false);
 
@@ -575,7 +575,13 @@ export default function ModeratorPage({
       });
 
       if (!response.ok) {
-        throw new Error();
+        const errorPayload = await response.json().catch(() => null);
+        const serverMessage =
+          errorPayload && typeof errorPayload.message === "string"
+            ? errorPayload.message
+            : "Не удалось добавить Instagram аккаунт.";
+
+        throw new Error(serverMessage);
       }
 
       toast.success("Вы вышли из аккаунта.");
@@ -607,8 +613,8 @@ export default function ModeratorPage({
   };
 
   const handleConnectInstagramAccounts = async () => {
-    if (!instagramConnectKey.trim()) {
-      toast.error("Введите ключ монтажёра");
+    if (!instagramUsername.trim()) {
+      toast.error("Введите никнейм Instagram");
 
       return;
     }
@@ -617,7 +623,7 @@ export default function ModeratorPage({
       setIsInstagramConnecting(true);
 
       const response = await fetch(
-        `${serverUrl}/api/instagram-account/connect-editor`,
+        `${serverUrl}/api/instagram-account/by-moderator`,
 
         {
           method: "POST",
@@ -629,7 +635,7 @@ export default function ModeratorPage({
           },
 
           body: JSON.stringify({
-            editorKey: instagramConnectKey.trim(),
+            username: instagramUsername.trim(),
           }),
         },
       );
@@ -638,15 +644,19 @@ export default function ModeratorPage({
         throw new Error();
       }
 
-      toast.success("Instagram аккаунты монтажёра добавлены.");
+      toast.success("Instagram аккаунт добавлен.");
 
-      setInstagramConnectKey("");
+      setInstagramUsername("");
 
       refreshStatistics();
 
       await loadInstagramPendingReports(undefined, { silent: true });
-    } catch {
-      toast.error("Не удалось добавить Instagram аккаунты.");
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "Не удалось добавить Instagram аккаунт.",
+      );
     } finally {
       setIsInstagramConnecting(false);
     }
@@ -1646,7 +1656,7 @@ export default function ModeratorPage({
                           setSelectedPlatform(platform);
                           setSelectedAccountId("");
                           setConfirmOpenId("");
-                          setInstagramConnectKey("");
+                          setInstagramUsername("");
                         }}
                         className={
                           selectedPlatform === platform
@@ -1667,19 +1677,18 @@ export default function ModeratorPage({
                 {selectedPlatform === "instagram" ? (
                   <>
                     <input
-                      value={instagramConnectKey}
+                      value={instagramUsername}
                       disabled={isPageDisabled}
                       onChange={(event) =>
-                        setInstagramConnectKey(event.target.value)
+                        setInstagramUsername(event.target.value)
                       }
-                      placeholder="Ключ монтажёра Instagram"
+                      placeholder="Никнейм Instagram (@username или ссылка)"
                       className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm outline-none placeholder:text-zinc-500 focus:border-orange-500 disabled:cursor-not-allowed disabled:opacity-50"
                     />
 
                     <p className="text-xs text-zinc-500">
-                      Монтажёр видит этот ключ в своём Instagram-кабинете. По
-                      ключу будут добавлены все свободные Instagram аккаунты
-                      этого монтажёра.
+                      Один Instagram аккаунт на модератора. Чтобы добавить другой,
+                      сначала отвяжите текущий.
                     </p>
                   </>
                 ) : (
@@ -1732,7 +1741,7 @@ export default function ModeratorPage({
                   disabled={
                     isPageDisabled ||
                     (selectedPlatform === "instagram"
-                      ? !instagramConnectKey
+                      ? !instagramUsername
                       : !selectedAccountId)
                   }
                   onClick={handleConnectAccount}

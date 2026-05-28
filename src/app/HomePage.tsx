@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaInstagram, FaTiktok, FaUserShield, FaYoutube } from "react-icons/fa";
+import { FaTiktok, FaUserShield, FaYoutube } from "react-icons/fa";
 
 import { PlatformTrustNotice } from "./PlatformTrustNotice";
 import { PublicLayout } from "./PublicLayout";
@@ -11,7 +11,7 @@ const getServerPath = (path: string) =>
   serverUrl ? `${serverUrl}${path}` : path;
 
 const metrics = [
-  { label: "Supported workflows", value: "TikTok, YouTube, Instagram reports" },
+  { label: "Supported workflows", value: "TikTok, YouTube, Instagram profile analytics" },
   { label: "TikTok permissions", value: "user.info.basic, video.list" },
   { label: "Review workflows", value: "Moderators and admins" },
 ];
@@ -77,14 +77,6 @@ export default function HomePage() {
                   Authorize via Google
                 </a>
 
-                <a
-                  href="/instagram/connect"
-                  className="inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] border border-white/15 bg-white/[0.06] px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/[0.1]"
-                >
-                  <FaInstagram className="size-5 text-[#ffbd59]" />
-                  Instagram reports
-                </a>
-
                 <Link
                   href="/moderator"
                   className="inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] border border-[#25f4ee]/35 bg-[#25f4ee]/10 px-5 py-3 text-sm font-semibold text-[#25f4ee] transition hover:bg-[#25f4ee]/15"
@@ -135,7 +127,7 @@ export default function HomePage() {
                 {[
                   ["TikTok account", "video.list data refreshed", "#25f4ee"],
                   ["YouTube channel", "readonly profile connected", "#ffffff"],
-                  ["Instagram report", "pending moderator review", "#ffbd59"],
+                  ["Instagram", "profile analytics via parser", "#ffbd59"],
                 ].map(([title, detail, color]) => (
                   <div
                     key={title}

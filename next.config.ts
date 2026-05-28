@@ -31,10 +31,16 @@ const nextConfig: NextConfig = {
     ];
   },
   async rewrites() {
+    const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL?.replace(/\/$/, "");
+
+    if (!serverUrl) {
+      return [];
+    }
+
     return [
       {
         source: "/uploads/:path*",
-        destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/uploads/:path*`,
+        destination: `${serverUrl}/uploads/:path*`,
       },
     ];
   },
