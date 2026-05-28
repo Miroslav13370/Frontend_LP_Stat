@@ -60,13 +60,13 @@ export default function HomePage() {
               </p>
 
               <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <a
-                  href={getServerPath("/api/auth/tiktok/entry")}
+                <Link
+                  href="/tiktok/connect"
                   className="inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] bg-[#fe2c55] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#ff4168]"
                 >
                   <FaTiktok className="size-5" />
                   Connect TikTok
-                </a>
+                </Link>
 
                 <a
                   href={getServerPath("/api/auth/youtube/entry")}
