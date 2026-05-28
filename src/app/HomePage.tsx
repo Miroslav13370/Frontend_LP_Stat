@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaInstagram, FaTiktok, FaUserShield, FaYoutube } from "react-icons/fa";
 
+import { PlatformTrustNotice } from "./PlatformTrustNotice";
 import { PublicLayout } from "./PublicLayout";
 
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL?.replace(/\/$/, "");
@@ -65,7 +66,7 @@ export default function HomePage() {
                   className="inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] bg-[#fe2c55] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#ff4168]"
                 >
                   <FaTiktok className="size-5" />
-                  Connect TikTok
+                  Authorize via TikTok
                 </Link>
 
                 <a
@@ -73,7 +74,7 @@ export default function HomePage() {
                   className="inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
                 >
                   <FaYoutube className="size-5 text-red-600" />
-                  Connect YouTube
+                  Authorize via Google
                 </a>
 
                 <a
@@ -92,6 +93,8 @@ export default function HomePage() {
                   Moderator login
                 </Link>
               </div>
+
+              <PlatformTrustNotice className="mt-6 max-w-2xl" compact />
             </div>
 
             <div className="rounded-[8px] border border-white/10 bg-[#101114] shadow-2xl shadow-black/30">
@@ -176,7 +179,10 @@ export default function HomePage() {
 
         <section className="border-t border-white/10 px-4 py-8 sm:px-6">
           <div className="mx-auto flex max-w-7xl flex-col gap-4 text-sm text-white/50 sm:flex-row sm:items-center sm:justify-between">
-            <p>New People uses official platform APIs only with user consent.</p>
+            <p>
+              New People uses official platform APIs only with user consent and
+              never collects social media passwords or payment information.
+            </p>
             <div className="flex gap-5">
               <Link href="/terms" className="hover:text-white">
                 Terms of Service

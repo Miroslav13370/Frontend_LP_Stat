@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FaTiktok } from "react-icons/fa";
 
+import { PlatformTrustNotice } from "@/src/app/PlatformTrustNotice";
 import { PublicLayout } from "@/src/app/PublicLayout";
 
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL?.replace(/\/$/, "");
@@ -10,9 +11,9 @@ const getServerPath = (path: string) =>
   serverUrl ? `${serverUrl}${path}` : path;
 
 export const metadata: Metadata = {
-  title: "Connect TikTok",
+  title: "Authorize TikTok",
   description:
-    "Connect a TikTok account to New People using TikTok Login Kit permissions user.info.basic and video.list.",
+    "Authorize New People to access TikTok account analytics through the official TikTok Login Kit permissions user.info.basic and video.list.",
   alternates: {
     canonical: "/tiktok/connect",
   },
@@ -26,7 +27,7 @@ export default function TikTokConnectPage() {
           <p className="text-sm font-semibold text-[#25f4ee]">New People</p>
 
           <h1 className="mt-3 text-3xl font-bold leading-tight text-white sm:text-4xl">
-            Connect TikTok account
+            Authorize TikTok access for New People
           </h1>
 
           <p className="mt-4 text-sm leading-7 text-white/65">
@@ -35,13 +36,15 @@ export default function TikTokConnectPage() {
             and <code>video.list</code> for account analytics.
           </p>
 
+          <PlatformTrustNotice className="mt-5" />
+
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <a
               href={getServerPath("/api/auth/tiktok/entry")}
               className="inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] bg-[#fe2c55] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#ff4168]"
             >
               <FaTiktok className="size-5" />
-              Continue with TikTok
+              Open TikTok authorization
             </a>
 
             <Link

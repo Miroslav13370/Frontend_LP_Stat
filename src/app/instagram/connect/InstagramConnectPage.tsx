@@ -66,8 +66,8 @@ export default function InstagramConnectPage() {
     } catch {
       setError(
         isRegisterMode
-          ? "Could not create the Instagram report account. Check the details and try again."
-          : "Could not sign in. Check the login and password.",
+          ? "Could not create the report editor account. Check the details and try again."
+          : "Could not sign in. Check the New People editor credentials.",
       );
     } finally {
       setIsLoading(false);
@@ -83,20 +83,29 @@ export default function InstagramConnectPage() {
 
         <div className="mt-8 rounded-[8px] border border-white/10 bg-white/[0.05] p-6 shadow-2xl shadow-black/30">
           <p className="text-sm font-medium text-[#ff4fa3]">
-            Instagram Reports
+            New People report workspace
           </p>
 
           <h1 className="mt-2 text-3xl font-bold">
             {isRegisterMode
-              ? "Create an Instagram report account"
+              ? "Create a report editor account"
               : "Sign in to an editor account"}
           </h1>
 
           <p className="mt-3 text-sm leading-6 text-white/60">
             {isRegisterMode
               ? "Register editor access and the Instagram account that will submit metrics for moderator review."
-              : "Enter your login and password to open your Instagram reports."}
+              : "Use New People editor credentials to open assigned report workflows."}
           </p>
+
+          <div className="mt-5 rounded-[8px] border border-[#ffbd59]/25 bg-[#ffbd59]/10 p-4 text-sm leading-6 text-white/70">
+            <p className="font-semibold text-white">Credential safety notice</p>
+            <p className="mt-1">
+              Do not enter an Instagram password here. This form is only for
+              invite-only New People editor accounts and manual report
+              workflows.
+            </p>
+          </div>
 
           <div className="mt-6 grid grid-cols-2 gap-2 rounded-[8px] border border-white/10 bg-black/20 p-1">
             <button
@@ -134,7 +143,9 @@ export default function InstagramConnectPage() {
 
           <form onSubmit={handleSubmit} className="mt-8 space-y-4">
             <div>
-              <label className="mb-2 block text-sm text-white/70">Login</label>
+              <label className="mb-2 block text-sm text-white/70">
+                New People editor login
+              </label>
 
               <input
                 value={login}
@@ -143,12 +154,13 @@ export default function InstagramConnectPage() {
                 disabled={isLoading}
                 className="w-full rounded-[8px] border border-white/10 bg-black/20 px-4 py-3 outline-none transition placeholder:text-white/30 focus:border-[#ff4fa3] disabled:cursor-not-allowed disabled:opacity-60"
                 placeholder="editor_login"
+                autoComplete="username"
               />
             </div>
 
             <div>
               <label className="mb-2 block text-sm text-white/70">
-                Password
+                New People editor password
               </label>
 
               <input
@@ -160,6 +172,9 @@ export default function InstagramConnectPage() {
                 disabled={isLoading}
                 className="w-full rounded-[8px] border border-white/10 bg-black/20 px-4 py-3 outline-none transition placeholder:text-white/30 focus:border-[#ff4fa3] disabled:cursor-not-allowed disabled:opacity-60"
                 placeholder="At least 6 characters"
+                autoComplete={
+                  isRegisterMode ? "new-password" : "current-password"
+                }
               />
             </div>
 
@@ -229,7 +244,7 @@ export default function InstagramConnectPage() {
                   ? "Creating..."
                   : "Signing in..."
                 : isRegisterMode
-                  ? "Create Instagram report account"
+                  ? "Create report editor account"
                   : "Sign in"}
             </button>
           </form>

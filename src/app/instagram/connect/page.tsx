@@ -5,7 +5,9 @@ import { PublicLayout } from "@/src/app/PublicLayout";
 import InstagramConnectPage from "./InstagramConnectPage";
 
 export const metadata: Metadata = {
-  title: "Instagram Account Connection",
+  title: "Instagram Report Access",
+  description:
+    "Invite-only New People editor access for Instagram report workflows. New People does not collect Instagram passwords.",
   ...NO_INDEX_PAGE,
 };
 
